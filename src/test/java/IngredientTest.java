@@ -30,10 +30,20 @@ public class IngredientTest {
     }
 
     @Test
-    public void testIngredientDetails() {
+    public void testIngredientType() {
         Ingredient ingredient = new Ingredient(type, name, price);
         assertEquals("Тип ингредиента должен соответствовать", type, ingredient.getType());
+    }
+
+    @Test
+    public void testIngredientName() {
+        Ingredient ingredient = new Ingredient(type, name, price);
         assertEquals("Название ингредиента должно соответствовать", name, ingredient.getName());
+    }
+
+    @Test
+    public void testIngredientPrice() {
+        Ingredient ingredient = new Ingredient(type, name, price);
         assertEquals("Цена ингредиента должна соответствовать", price, ingredient.getPrice(), 0.01);
     }
 }

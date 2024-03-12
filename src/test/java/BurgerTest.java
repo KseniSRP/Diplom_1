@@ -86,17 +86,27 @@ public class BurgerTest {
         assertNotEquals("Ингредиент должен был быть перемещен на новую позицию", firstIngredient, burger.ingredients.get(0));
     }
 
-    // Тест на генерацию чека с правильными данными
-    @Test
+
+    @Test // добавлена проверка на полное соответсвие чека
     public void testReceiptGeneration() {
         // Добавление ингредиентов для теста генерации чека
         burger.addIngredient(hotSauce);
         burger.addIngredient(cutlet);
-        String receipt = burger.getReceipt();
-        // Проверка данных в чеке
-        assertTrue("Чек должен содержать название булочки 'black bun'", receipt.contains("black bun"));
-        assertTrue("Чек должен содержать название ингредиента 'hot sauce'", receipt.contains("hot sauce"));
-        assertTrue("Чек должен содержать название ингредиента 'cutlet'", receipt.contains("cutlet"));
-        assertTrue("Чек должен содержать итоговую цену", receipt.contains("Price:"));
+
+        // Генерация фактического чека
+        String actualReceipt = burger.getReceipt();
+
+        // Формирование ожидаемого текста чека
+        String expectedReceipt = "(==== black bun ====)\n"
+                + "= sauce hot sauce =\n"
+                + "= filling cutlet =\n"
+                + "(==== black bun ====)\n"
+                +"\n"
+                + "Price: 400.000000"
+                +"\n";
+
+        // Проверка соответствия фактического чека ожидаемому
+        assertEquals("Чек должен полностью соответствовать ожидаемому содержанию", expectedReceipt, actualReceipt);
     }
+
 }
